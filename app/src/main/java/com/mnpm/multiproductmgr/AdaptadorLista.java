@@ -30,7 +30,7 @@ public class AdaptadorLista extends RecyclerView.Adapter<AdaptadorLista.ViewHold
     @Override
     public AdaptadorLista.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.layout_item, parent, false);
+                .inflate(R.layout.item_list, parent, false);
         return new ViewHolder(v);
     }
     @Override
