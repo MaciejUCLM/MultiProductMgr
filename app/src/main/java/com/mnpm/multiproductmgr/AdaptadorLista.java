@@ -1,4 +1,4 @@
-package com.ipo.example;
+package com.mnpm.multiproductmgr;
 
 import android.view.LayoutInflater;
 import android.view.View;
