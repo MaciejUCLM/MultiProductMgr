@@ -23,7 +23,7 @@ public class ActivityDetallesContacto extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit);
+        setContentView(R.layout.activity_editor);
 
         //Obtenemos las referencias a los elementos gráficos de la GUI
         txtNombreC=findViewById(R.id.txtNombreC);
