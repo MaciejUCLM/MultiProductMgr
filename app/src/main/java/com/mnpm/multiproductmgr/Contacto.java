@@ -1,4 +1,4 @@
-package com.ipo.example;
+package com.mnpm.multiproductmgr;
 
 public class Contacto {
     private String nombre;
