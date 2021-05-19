@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#232323"
     tools:context=".MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -15,16 +16,16 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/black"
             app:popupTheme="@style/Theme.MultiProductManager.PopupOverlay" />
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
+            android:background="@color/black"
             android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme" >
+            android:theme="?attr/actionBarTheme">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -36,14 +37,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_margin="5dp"
-                    android:ems="10"
-                    android:hint="Buscar"
                     android:drawableRight="@drawable/ic_menu_slideshow"
-                    android:gravity="center" >
-                </EditText>
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="Buscar"></EditText>
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
-
 
 
     </com.google.android.material.appbar.AppBarLayout>
