@@ -16,7 +16,7 @@
     <!--android:layout_weight="1"-->
 
     <LinearLayout
-        android:layout_width="214dp"
+        android:layout_width="284dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical">
@@ -32,20 +32,6 @@
             android:layout_width="match_parent"
             android:layout_height="101dp"
             android:text="Subtitle" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="70dp"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <Button
-            android:id="@+id/button"
-            style="@style/Widget.AppCompat.Button"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:icon="@android:drawable/ic_menu_sort_by_size"
-            app:iconTint="#FFFFFF" />
     </LinearLayout>
 
 </LinearLayout>
