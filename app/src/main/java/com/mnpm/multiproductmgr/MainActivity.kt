@@ -1,6 +1,5 @@
 package com.mnpm.multiproductmgr
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
@@ -24,10 +23,10 @@ class MainActivity : AppCompatActivity() {
 
     private val contactoSeleccionado = 0
 
-    private var contactos: ArrayList<Contacto>? = null
+    private var contactos: ArrayList<Product>? = null
     private var lstContactos: RecyclerView? = null
 
-    private var adaptador: AdaptadorLista? = null
+    private var adaptador: ListAdapter? = null
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
@@ -52,12 +51,12 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        lstContactos = findViewById(R.id.lstContactos)
+        lstContactos = findViewById(R.id.lstProducts)
         contactos = ArrayList()
         // TODO load example data here
         val mLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(applicationContext)
         //lstContactos.setLayoutManager(mLayoutManager)
-        adaptador = AdaptadorLista(contactos)
+        adaptador = ListAdapter(contactos)
         //lstContactos.setAdapter(adaptador)
         val i = Intent(this, EditorActivity::class.java)
     }
