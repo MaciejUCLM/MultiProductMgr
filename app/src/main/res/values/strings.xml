@@ -10,4 +10,12 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+
+    <string name="title_car">Car Title</string>
+    <string name="model_car">Model : </string>
+    <string name="engine_car">Engine : </string>
+    <string name="descr_car">Description : </string>
+    <string name="model_car_text">Model Text</string>
+    <string name="engine_car_text">Engine Text</string>
+    <string name="descr_car_text">Description Text</string>
 </resources>
