@@ -65,7 +65,7 @@ class EditorActivity : AppCompatActivity() {
         for ((i, name) in carFieldName.withIndex())
             carFields[i].setText(bundle!!.getString(name))
 
-        btnGuardarC = findViewById(R.id.btnGuardarC) as Button
+        btnGuardarC = findViewById<Button>(R.id.btnGuardarC)
         btnGuardarC!!.setOnClickListener(View.OnClickListener {
             val carData = Array<String>(carFields.size) { i -> ""}
             for((i, field) in carFields.withIndex())
