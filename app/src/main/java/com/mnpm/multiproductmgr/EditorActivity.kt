@@ -10,12 +10,6 @@ import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.*
 
 class EditorActivity : AppCompatActivity() {
-    private var txtNombreC: EditText? = null
-    private var txtTelefonoC: EditText? = null
-    private var spinnerTipo: Spinner? = null
-    private var txtEmailC: EditText? = null
-    private var txtDireccionC: EditText? = null
-
     private var btnGuardarC: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
