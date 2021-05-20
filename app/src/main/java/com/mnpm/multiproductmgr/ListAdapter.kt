@@ -35,6 +35,7 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val contacto = contactos!![position]
+        /*
         holder.lblNombre.text = contactos!![position].getNombre()
         holder.lblTelefono.text = contactos!![position].getTelefono()
         when (contactos!![position].getTipo()) {
@@ -45,6 +46,7 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ViewHolder> {
             2 -> {
             }
         }
+         */
     }
 
     override fun getItemCount(): Int {

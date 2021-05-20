@@ -1,14 +1,16 @@
 package com.mnpm.multiproductmgr
 
+import android.annotation.SuppressLint
+import android.app.Activity
 import android.os.Bundle
 import android.view.ActionMode
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-
 import android.graphics.drawable.Drawable
-
-
+import android.view.View
+import androidx.core.graphics.drawable.DrawableCompat
+import androidx.core.view.*
 
 class EditorActivity : AppCompatActivity() {
     private var txtNombreC: EditText? = null
@@ -55,7 +57,7 @@ class EditorActivity : AppCompatActivity() {
         }
 
         // Obtenemos las referencias a los elementos gráficos de la GUI
-        val carFieldName = arrayOf<EditText>(
+        val carFieldName = arrayOf<String>(
                 "carNameField",
                 "carPowerField",
                 "carMaxVelocityField",
@@ -64,38 +66,33 @@ class EditorActivity : AppCompatActivity() {
                 "carProductionYearField"
         )
         val carFields = arrayOf<EditText>(
-                findViewById(R.id.carNameField) as EditText,
-                findViewById(R.id.carPowerField) as EditText,
-                findViewById(R.id.carMaxVelocityField) as EditText,
-                findViewById(R.id.carCarbonDioxideEmisionField) as EditText,
-                findViewById(R.id.carMassField) as EditText,
-                findViewById(R.id.carProductionYearField) as EditText
+                findViewById<EditText>(R.id.carNameField),
+                findViewById<EditText>(R.id.carPowerField),
+                findViewById<EditText>(R.id.carMaxVelocityField),
+                findViewById<EditText>(R.id.carCarbonDioxideEmisionField),
+                findViewById<EditText>(R.id.carMassField),
+                findViewById<EditText>(R.id.carProductionYearField)
         )
 
         //Recoger los datos enviados por la primera actividad y mostrarlos en la GUI
         val bundle = intent.extras
         for ((i, name) in carFieldName.withIndex())
-            carFields[i].setText(bundle.getString(name))
+            carFields[i].setText(bundle!!.getString(name))
 
         btnGuardarC = findViewById(R.id.btnGuardarC) as Button
-        btnGuardarC.setOnClickListener(View.OnClickListener {
-            val carData = Array<String>(carFields.size, {i-> null})
+        btnGuardarC!!.setOnClickListener(View.OnClickListener {
+            val carData = Array<String>(carFields.size) { i -> ""}
             for((i, field) in carFields.withIndex())
                 carData[i] = field.text.toString()
 
-            val newCar = Product(*carData)
-            setResult(Activity.RESULT_OK, newCar)
+            val text = R.string.edit_saved
+            val duration = Toast.LENGTH_SHORT
+            val toast = Toast.makeText(applicationContext, text, duration)
+            toast.show()
+            //val newCar = Product(*carData)
+            //setResult(Activity.RESULT_OK, newCar)
             finish()
         })
 
-    }
-
-    override fun onActionModeFinished(mode: ActionMode?) {
-        //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show()
-        val text = "Hello toast!"
-        val duration = Toast.LENGTH_SHORT
-        val toast = Toast.makeText(applicationContext, text, duration)
-        toast.show()
-        super.onActionModeFinished(mode)
     }
 }

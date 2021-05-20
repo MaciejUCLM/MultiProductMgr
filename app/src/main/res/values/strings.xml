@@ -2,6 +2,7 @@
     <string name="app_name">Car Manager</string>
     <string name="action_settings">Settings</string>
     <string name="edit_save">Guardar</string>
+    <string name="edit_saved">Guardado</string>
     <string name="edit_name">El nombre del coche</string>
     <string name="edit_power">Potencia</string>
     <string name="edit_max_speed">Velocidad máxima</string>
