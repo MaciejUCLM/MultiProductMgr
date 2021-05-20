@@ -15,10 +15,8 @@ class EditorActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editor)
-        //val toolbar: Toolbar = findViewById(R.id.toolbar)
-        //setSupportActionBar(toolbar)
 
-        var layout = findViewById<LinearLayout>(R.id.mainEditorLayout)
+        val layout = findViewById<LinearLayout>(R.id.mainEditorLayout)
         val unwrappedDrawable = resources.getDrawable(R.drawable.custom_item)
         val wrappedDrawable: Drawable = DrawableCompat.wrap(unwrappedDrawable)
 
