@@ -1,9 +1,6 @@
 package com.mnpm.multiproductmgr
 
-import android.annotation.SuppressLint
-import android.app.Activity
 import android.os.Bundle
-import android.view.ActionMode
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -21,18 +18,13 @@ class EditorActivity : AppCompatActivity() {
 
     private var btnGuardarC: Button? = null
 
-    fun getShape() {
-        val StrokeWidth = 2
-    }
-
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editor)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        var layout = findViewById(R.id.mainEditorLayout) as LinearLayout
+        var layout = findViewById<LinearLayout>(R.id.mainEditorLayout)
         val unwrappedDrawable = resources.getDrawable(R.drawable.custom_item)
         val wrappedDrawable: Drawable = DrawableCompat.wrap(unwrappedDrawable)
 
