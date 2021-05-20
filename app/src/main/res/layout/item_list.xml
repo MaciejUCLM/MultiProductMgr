@@ -4,19 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:background="#00000000"
+    android:backgroundTint="#00595959"
+    android:backgroundTintMode="screen"
     android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/imagContacto"
-        android:layout_width="wrap_content"
+        android:layout_width="186dp"
         android:layout_height="wrap_content"
         android:minWidth="50dp"
         android:minHeight="50dp"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@drawable/ic_launcher_foreground" />
     <!--android:layout_weight="1"-->
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="226dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical">
@@ -25,12 +28,22 @@
             android:id="@+id/lblNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="Title"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#DCDCDC" />
 
         <TextView
             android:id="@+id/lblTelefono"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:layout_height="101dp"
+            android:text="Subtitle"
+            android:textColor="#DCDCDC" />
+
     </LinearLayout>
+
+    <androidx.constraintlayout.widget.Barrier
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:barrierDirection="top" />
+
 </LinearLayout>
