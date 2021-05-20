@@ -1,14 +1,10 @@
 package com.mnpm.multiproductmgr
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
+import android.view.ActionMode
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 
 class EditorActivity : AppCompatActivity() {
     private var txtNombreC: EditText? = null
@@ -22,6 +18,8 @@ class EditorActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editor)
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar)
 
         // Obtenemos las referencias a los elementos gráficos de la GUI
         txtNombreC = findViewById(R.id.txtNombreC)
@@ -53,5 +51,14 @@ class EditorActivity : AppCompatActivity() {
             setResult(Activity.RESULT_OK, nuevoContacto)
             finish()
         })*/
+    }
+
+    override fun onActionModeFinished(mode: ActionMode?) {
+        //Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show()
+        val text = "Hello toast!"
+        val duration = Toast.LENGTH_SHORT
+        val toast = Toast.makeText(applicationContext, text, duration)
+        toast.show()
+        super.onActionModeFinished(mode)
     }
 }
