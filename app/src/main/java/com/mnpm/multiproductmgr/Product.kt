@@ -1,37 +1,21 @@
 package com.mnpm.multiproductmgr
 
 class Product {
-    private var nombre: String? = null
-    private var telefono: String? = null
-    private var tipo = 0 // 0:familia; 1:amigo; 2:trabajo
-    private var email: String? = null
-    private var direccion: String? = null
 
-    constructor(nom: String?, tel: String?, tip: Int, em: String?, dir: String?) {
-        nombre = nom
-        telefono = tel
-        tipo = tip
-        email = em
-        direccion = dir
+    private var name: String? = null
+    private var power: String? = null
+    private var maxVelocity: String?
+    private var carbonDioxideEmision: String? = null
+    private var mass: String? = null
+    private var productionYear: String? = null
+
+    constructor(name: String?, power: String?, maxVelocity: String?, carbonDioxideEmision: String?, mass: String?, productionYear: String?) {
+        this.name = name
+        this.power = power
+        this.maxVelocity = maxVelocity
+        this.carbonDioxideEmision = carbonDioxideEmision
+        this.mass = mass
+        this.productionYear = productionYear
     }
 
-    fun getNombre(): String? {
-        return nombre
-    }
-
-    fun getTelefono(): String? {
-        return telefono
-    }
-
-    fun getTipo(): Int {
-        return tipo
-    }
-
-    fun getEmail(): String? {
-        return email
-    }
-
-    fun getDireccion(): String? {
-        return direccion
-    }
 }

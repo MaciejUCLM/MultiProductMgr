@@ -12,6 +12,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="colorControlNormal">@color/darkerGray</item>
+        <item name="colorControlHighlight">@color/purple_500</item>
     </style>
 
     <style name="Theme.MultiProductManager.NoActionBar">
