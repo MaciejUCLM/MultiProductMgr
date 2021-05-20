@@ -21,12 +21,12 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    private val contactoSeleccionado = 0
+    private val productSelected = 0
 
-    private var contactos: ArrayList<Product>? = null
-    private var lstContactos: RecyclerView? = null
+    private var products: ArrayList<Product>? = null
+    private var lstProducts: RecyclerView? = null
 
-    private var adaptador: ListAdapter? = null
+    private var lsAdapter: ListAdapter? = null
 
     private lateinit var appBarConfiguration: AppBarConfiguration
 
@@ -51,13 +51,15 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        lstContactos = findViewById(R.id.lstProducts)
-        contactos = ArrayList()
+        lstProducts = findViewById(R.id.lstProducts)
+        products = ArrayList()
         // TODO load example data here
+        products!!.add(Product("name", "tel", 0, "email", "direction"))
+        // TODO improve
         val mLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(applicationContext)
-        //lstContactos.setLayoutManager(mLayoutManager)
-        adaptador = ListAdapter(contactos)
-        //lstContactos.setAdapter(adaptador)
+        lstProducts!!.layoutManager = mLayoutManager
+        lsAdapter = ListAdapter(products)
+        lstProducts!!.adapter = lsAdapter
         val i = Intent(this, EditorActivity::class.java)
     }
 
