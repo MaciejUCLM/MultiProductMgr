@@ -1,15 +1,19 @@
 <resources>
     <string name="app_name">Car Manager</string>
-    <string name="action_settings">Settings</string>
-    <string name="edit_save">Guardar</string>
-    <string name="edit_saved">Guardado</string>
-    <string name="edit_name">El nombre del coche</string>
-    <string name="edit_power">Potencia</string>
-    <string name="edit_max_speed">Velocidad máxima</string>
+
+    <string name="action_create">Create</string>
+    <string name="action_sort">Sort</string>
+
+    <string name="edit_save">Save</string>
+    <string name="edit_saved">Car saved</string>
+    <string name="edit_name">Car name</string>
+    <string name="edit_power">Power</string>
+    <string name="edit_max_speed">Max speed</string>
     <string name="edit_combustible">Combustible</string>
-    <string name="edit_emission">Emisión CO2</string>
-    <string name="edit_year">Año de fabricación</string>
-    <string name="edit_mass">Masa</string>
+    <string name="edit_emission">Emission CO2</string>
+    <string name="edit_year">Production year</string>
+    <string name="edit_mass">Mass</string>
+
     <string name="title_car">Car Title</string>
     <string name="model_car">Model : </string>
     <string name="engine_car">Engine : </string>
@@ -17,4 +21,5 @@
     <string name="model_car_text">Model Text</string>
     <string name="engine_car_text">Engine Text</string>
     <string name="descr_car_text">Description Text</string>
+    <string name="search">Search</string>
 </resources>
