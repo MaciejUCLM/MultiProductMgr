@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         lstProducts = findViewById(R.id.lstProducts)
         products = ArrayList()
         // TODO load example data here
-        products!!.add(Product("name", "tel", 0, "email", "direction"))
+        products!!.add(Product("Ford Focus", "200", "220", "0.2", "1900", "2015"))
         // TODO improve
         val mLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(applicationContext)
         lstProducts!!.layoutManager = mLayoutManager
