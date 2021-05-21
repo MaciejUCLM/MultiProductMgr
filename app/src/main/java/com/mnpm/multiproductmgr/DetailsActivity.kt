@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 
@@ -19,9 +21,21 @@ class DetailsActivity : AppCompatActivity(), DeleteDialogListenerI {
         // Get a support ActionBar corresponding to this toolbar and enable the Up button
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        val carName = findViewById<TextView>(R.id.carNameText)
+        val carImage = findViewById<ImageView>(R.id.carImage)
+        val carType = findViewById<TextView>(R.id.carModelText)
+        val carPower = findViewById<TextView>(R.id.carEngineText)
+        val carOther = findViewById<TextView>(R.id.carDescrText)
+
         // load provided product
         val product = ProductManager.intentToProduct(intent)
         product?.let {
+            carName.text = product.name
+            carImage.setImageResource(product.type!!.getIcon())
+            carType.text = product.type!!.getString()
+            carPower.text = resources.getString(R.string.horsepower, product.power)
+            carOther.text = resources.getString(R.string.other_details,
+                    product.productionYear, product.mass, product.maxVelocity)
         }
     }
 
@@ -40,14 +54,12 @@ class DetailsActivity : AppCompatActivity(), DeleteDialogListenerI {
                 val i = ProductManager.productToIntent(
                         Intent(this, EditorActivity::class.java), ProductManager.getProduct())
                 startActivityForResult(i, 1235)
-                finish()
                 true
             }
             R.id.action_delete -> {
                 val dialog = DeleteDialog()
                 dialog.setParent(this)
                 dialog.show(supportFragmentManager, "delete")
-                finish()
                 true
             }
             else -> {
@@ -67,12 +79,14 @@ class DetailsActivity : AppCompatActivity(), DeleteDialogListenerI {
                     ProductManager.products[ProductManager.getProductSelected()] = product
             }
         }
+        finish()
     }
 
     override fun deleteDialogAccepted(dialog: DialogInterface) {
         ProductManager.removeSelectedProduct()
         val toast = Toast.makeText(applicationContext, R.string.deleted, Toast.LENGTH_SHORT)
         toast.show()
+        finish()
     }
 
     override fun deleteDialogCancelled(dialog: DialogInterface) {

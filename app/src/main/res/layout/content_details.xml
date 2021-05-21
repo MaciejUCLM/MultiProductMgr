@@ -23,7 +23,7 @@
                 android:fontFamily="sans-serif-black"
                 android:text="@string/title_car"
                 android:textAlignment="center"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="36sp" />
         </LinearLayout>
 
@@ -33,7 +33,7 @@
             android:layout_height="234dp">
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/carImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:srcCompat="@android:drawable/ic_menu_gallery" />

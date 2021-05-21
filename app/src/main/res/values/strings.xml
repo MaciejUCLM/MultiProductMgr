@@ -18,13 +18,15 @@
     <string name="edit_mass">Mass</string>
 
     <string name="title_car">Car Title</string>
-    <string name="model_car">Model : </string>
-    <string name="engine_car">Engine : </string>
-    <string name="descr_car">Description : </string>
-    <string name="model_car_text">Model Text</string>
-    <string name="engine_car_text">Engine Text</string>
-    <string name="descr_car_text">Description Text</string>
+    <string name="model_car">Type : </string>
+    <string name="engine_car">Engine power : </string>
+    <string name="descr_car">Other : </string>
+    <string name="model_car_text">Car type</string>
+    <string name="engine_car_text">Car engine</string>
+    <string name="descr_car_text">Car other details</string>
     <string name="search">Search</string>
+    <string name="horsepower">%d HP</string>
+    <string name="other_details">Production: %d\nMass:%d\nMax speed:%d</string>
 
     <string name="yes">Yes</string>
     <string name="no">No</string>
