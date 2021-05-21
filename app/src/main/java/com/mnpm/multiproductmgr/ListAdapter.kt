@@ -34,7 +34,7 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ViewHolder> {
         holder.lblName.text = p.name.toString()
         holder.lblYear.text = p.productionYear.toString()
         holder.imgType.setImageResource(p.type!!.getIcon())
-        holder.itemView!!.setOnClickListener {
+        holder.itemView.setOnClickListener {
             itemSelectedListener!!.onItemSelected(it, holder.adapterPosition)
         }
     }
@@ -45,5 +45,9 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     fun setListener(listener: OnItemSelectedListenerI) {
         itemSelectedListener = listener
+    }
+
+    fun sortElements() {
+        elementsList!!.sortBy { p -> p.name }
     }
 }

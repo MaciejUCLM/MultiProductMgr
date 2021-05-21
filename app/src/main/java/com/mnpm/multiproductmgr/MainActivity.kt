@@ -2,9 +2,7 @@ package com.mnpm.multiproductmgr
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
+import android.view.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
@@ -20,7 +18,7 @@ class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
     private var productSelected = 0
 
     private var products: ArrayList<Product>? = null
-    private var lstProducts: RecyclerView? = null
+    private var lsProducts: RecyclerView? = null
 
     private var lsAdapter: ListAdapter? = null
 
@@ -41,10 +39,11 @@ class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
 
         val mLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(applicationContext)
         lsAdapter = ListAdapter(products)
-        lstProducts = findViewById(R.id.lstProducts)
-        lstProducts!!.layoutManager = mLayoutManager
-        lstProducts!!.adapter = lsAdapter
-        lstProducts!!.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
+        lsProducts = findViewById(R.id.lstProducts)
+        lsProducts!!.layoutManager = mLayoutManager
+        lsProducts!!.adapter = lsAdapter
+        lsProducts!!.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
+
         lsAdapter!!.setListener(object : OnItemSelectedListenerI {
             override fun onItemSelected(view: View, position: Int) {
                 productSelected = position
@@ -108,6 +107,12 @@ class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
             inflate(R.menu.popup)
             show()
         }
+    }
+
+    override fun onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenu.ContextMenuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo)
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.popup, menu)
     }
 
     // TODO save new element
