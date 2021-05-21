@@ -8,7 +8,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
-import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,7 +17,7 @@ import java.util.*
 
 class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
 
-    private val productSelected = 0
+    private var productSelected = 0
 
     private var products: ArrayList<Product>? = null
     private var lstProducts: RecyclerView? = null
@@ -41,11 +40,17 @@ class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
         loadExampleData()
 
         val mLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(applicationContext)
+        lsAdapter = ListAdapter(products)
         lstProducts = findViewById(R.id.lstProducts)
         lstProducts!!.layoutManager = mLayoutManager
-        lsAdapter = ListAdapter(products)
         lstProducts!!.adapter = lsAdapter
         lstProducts!!.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
+        lsAdapter!!.setListener(object : OnItemSelectedListenerI {
+            override fun onItemSelected(view: View, position: Int) {
+                productSelected = position
+                showPopup(view)
+            }
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -34,6 +34,9 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ViewHolder> {
         holder.lblName.text = p.name.toString()
         holder.lblYear.text = p.productionYear.toString()
         holder.imgType.setImageResource(p.type!!.getIcon())
+        holder.itemView!!.setOnClickListener {
+            itemSelectedListener!!.onItemSelected(it, holder.adapterPosition)
+        }
     }
 
     override fun getItemCount(): Int {
