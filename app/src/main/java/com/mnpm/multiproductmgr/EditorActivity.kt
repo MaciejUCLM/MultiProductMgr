@@ -12,6 +12,8 @@ import androidx.core.view.*
 
 class EditorActivity : AppCompatActivity() {
 
+    private var newItem: Boolean = false
+
     private var btnSave: Button? = null
     private var nameField: EditText? = null
     private var powerField: EditText? = null
@@ -55,6 +57,9 @@ class EditorActivity : AppCompatActivity() {
             }
         }
 
+        val bundle = intent.extras
+        newItem = intent.hasExtra("new") && bundle!!.getBoolean("new")
+
         // load provided product
         val product = ProductManager.intentToProduct(intent)
         product?.let {
@@ -76,6 +81,10 @@ class EditorActivity : AppCompatActivity() {
                         massField!!.text.toString().toInt(),
                         productionYearField!!.text.toString().toInt())
                 val data = ProductManager.productToIntent(Intent(), p)
+
+                if (newItem) {
+                    ProductManager.addNewProduct(ProductManager.intentToProduct(data)!!)
+                }
 
                 val text = R.string.edit_saved
                 val toast = Toast.makeText(applicationContext, text, Toast.LENGTH_SHORT)

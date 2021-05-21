@@ -25,6 +25,11 @@ class MainActivity : AppCompatActivity(), SortDialogListenerI, DeleteDialogListe
         startActivity(intent)
     }
 
+    override fun onResume() {
+        super.onResume()
+        lsAdapter?.notifyDataSetChanged()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -33,7 +38,9 @@ class MainActivity : AppCompatActivity(), SortDialogListenerI, DeleteDialogListe
 
         val fab: FloatingActionButton = findViewById(R.id.fab)
         fab.setOnClickListener { view ->
-            val i = Intent(this, EditorActivity::class.java)
+            val i = Intent(this, EditorActivity::class.java).apply {
+                putExtra("new", true)
+            }
             startActivity(i)
         }
 

@@ -29,6 +29,10 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ViewHolder> {
     }
 
     constructor(list: ArrayList<Product>?) {
+        setList(list)
+    }
+
+    fun setList(list: ArrayList<Product>?) {
         this.elementsList = list
     }
 
