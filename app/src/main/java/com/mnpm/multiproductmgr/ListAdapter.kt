@@ -14,7 +14,7 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ViewHolder> {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val lblNombre: TextView
         val lblTelefono: TextView
-        private val imagContacto: ImageView
+        val imagContacto: ImageView
 
         init {
             lblNombre = view.findViewById(R.id.lblNombre)
@@ -35,18 +35,25 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val contacto = contactos!![position]
-        /*
         holder.lblNombre.text = contactos!![position].getNombre()
-        holder.lblTelefono.text = contactos!![position].getTelefono()
+        //holder.lblTelefono.text = contactos!![position].getTelefono()
+        holder.lblTelefono.text = contactos!![position].getYear().toString()
+
         when (contactos!![position].getTipo()) {
-            0 -> {
+            ProductTypes.HATCHBACK -> {
+                holder.imagContacto.setBackgroundResource(ProductTypes.HATCHBACK.getIcon())
             }
-            1 -> {
+            ProductTypes.WAGON -> {
+                holder.imagContacto.setBackgroundResource(ProductTypes.WAGON.getIcon())
             }
-            2 -> {
+            ProductTypes.COUPE -> {
+                holder.imagContacto.setBackgroundResource(ProductTypes.COUPE.getIcon())
+            }
+            ProductTypes.CONVERTIBLE -> {
+                holder.imagContacto.setBackgroundResource(ProductTypes.CONVERTIBLE.getIcon())
             }
         }
-         */
+
     }
 
     override fun getItemCount(): Int {

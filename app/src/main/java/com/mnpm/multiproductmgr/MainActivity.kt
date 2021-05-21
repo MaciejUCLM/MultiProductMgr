@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
         products = ArrayList()
         // TODO load example data here
         products!!.add(Product("Ford Focus Mk1", ProductTypes.HATCHBACK, 110, 180, 1900, 2003))
+        products!!.add(Product("Fiat Punto", ProductTypes.HATCHBACK, 90, 180, 1500, 2012))
         // TODO improve
         val mLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(applicationContext)
         lstProducts!!.layoutManager = mLayoutManager
