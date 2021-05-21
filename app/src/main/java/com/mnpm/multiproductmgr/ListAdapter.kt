@@ -9,22 +9,18 @@ import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
 class ListAdapter : RecyclerView.Adapter<ListAdapter.ViewHolder> {
-    private var contactos: ArrayList<Product>? = null
+
+    private var itemSelectedListener: OnItemSelectedListenerI? = null
+    private var elementsList: ArrayList<Product>? = null
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val lblNombre: TextView
-        val lblTelefono: TextView
-        private val imagContacto: ImageView
-
-        init {
-            lblNombre = view.findViewById(R.id.lblNombre)
-            lblTelefono = view.findViewById(R.id.lblTelefono)
-            imagContacto = view.findViewById(R.id.imagContacto)
-        }
+        val lblName: TextView = view.findViewById(R.id.lblNombre)
+        val lblYear: TextView = view.findViewById(R.id.lblTelefono)
+        val imgType: ImageView = view.findViewById(R.id.imagContacto)
     }
 
-    constructor(contactos: ArrayList<Product>?) {
-        this.contactos = contactos
+    constructor(list: ArrayList<Product>?) {
+        this.elementsList = list
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -34,22 +30,17 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ViewHolder> {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val contacto = contactos!![position]
-        /*
-        holder.lblNombre.text = contactos!![position].getNombre()
-        holder.lblTelefono.text = contactos!![position].getTelefono()
-        when (contactos!![position].getTipo()) {
-            0 -> {
-            }
-            1 -> {
-            }
-            2 -> {
-            }
-        }
-         */
+        val p: Product = elementsList!![position]
+        holder.lblName.text = p.name.toString()
+        holder.lblYear.text = p.productionYear.toString()
+        holder.imgType.setImageResource(p.type!!.getIcon())
     }
 
     override fun getItemCount(): Int {
-        return contactos!!.size
+        return elementsList!!.size
+    }
+
+    fun setListener(listener: OnItemSelectedListenerI) {
+        itemSelectedListener = listener
     }
 }

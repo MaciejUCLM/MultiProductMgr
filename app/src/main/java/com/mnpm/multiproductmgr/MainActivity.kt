@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -44,6 +45,7 @@ class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
         lstProducts!!.layoutManager = mLayoutManager
         lsAdapter = ListAdapter(products)
         lstProducts!!.adapter = lsAdapter
+        lstProducts!!.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

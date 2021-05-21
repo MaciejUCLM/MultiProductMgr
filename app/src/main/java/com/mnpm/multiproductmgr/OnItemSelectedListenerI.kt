@@ -1,5 +1,5 @@
 package com.mnpm.multiproductmgr
 
 interface OnItemSelectedListenerI {
-    fun onContactoSeleccionado(posicion: Int)
+    fun onProductSelected(position: Int)
 }
