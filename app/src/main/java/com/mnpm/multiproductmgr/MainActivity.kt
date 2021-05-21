@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         lstProducts = findViewById(R.id.lstProducts)
         products = ArrayList()
         // TODO load example data here
-        products!!.add(Product("Ford Focus", "200", "220", "0.2", "1900", "2015"))
+        products!!.add(Product("Ford Focus Mk1", ProductTypes.HATCHBACK, 110, 180, 1900, 2003))
         // TODO improve
         val mLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(applicationContext)
         lstProducts!!.layoutManager = mLayoutManager
@@ -55,6 +55,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
+        // TODO search event
         /*
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem?.actionView as SearchView
@@ -91,6 +92,7 @@ class MainActivity : AppCompatActivity() {
         popup.show()
     }
 
+    // TODO save new element
     /*
     protected fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
         super.onActivityResult(requestCode, resultCode, data)
