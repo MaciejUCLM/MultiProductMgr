@@ -45,7 +45,9 @@ object ProductManager {
         return intent
     }
 
-    fun intentToProduct(intent: Intent): Product? {
+    fun intentToProduct(intent: Intent?): Product? {
+        if (intent == null)
+            return null
         for (s in listOf("carName", "carType", "carYear", "carPower", "carSpeed", "carMass")) {
             if (!intent.hasExtra(s))
                 return null

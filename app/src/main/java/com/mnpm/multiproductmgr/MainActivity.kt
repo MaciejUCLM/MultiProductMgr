@@ -1,19 +1,19 @@
 package com.mnpm.multiproductmgr
 
+import android.app.Activity
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.PopupMenu
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener, SortDialogListenerI, DeleteDialogListenerI {
+class MainActivity : AppCompatActivity(), SortDialogListenerI, DeleteDialogListenerI {
 
     private var lsProducts: RecyclerView? = null
     private var lsAdapter: ListAdapter? = null
@@ -87,34 +87,21 @@ class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener, Sor
         }
     }
 
-    override fun onMenuItemClick(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_view -> {
-                // TODO start intent
-                true
-            }
-            R.id.action_edit -> {
-                true
-            }
-            R.id.action_delete -> {
-                true
-            }
-            else -> false
-        }
-    }
-
     override fun onContextItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_view -> {
-                // TODO view
+                openDetails()
                 true
             }
             R.id.action_edit -> {
-                // TODO edit
+                val i = ProductManager.productToIntent(Intent(this, EditorActivity::class.java))
+                startActivity(i)
                 true
             }
             R.id.action_delete -> {
-                // TODO delete
+                val dialog = DeleteDialog()
+                dialog.setParent(this)
+                dialog.show(supportFragmentManager, "delete")
                 true
             }
             else -> super.onContextItemSelected(item)
@@ -123,6 +110,7 @@ class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener, Sor
 
     override fun deleteDialogAccepted(dialog: DialogInterface) {
         ProductManager.removeSelectedProduct()
+        lsAdapter?.notifyDataSetChanged()
         val toast = Toast.makeText(applicationContext, R.string.deleted, Toast.LENGTH_SHORT)
         toast.show()
     }
@@ -144,19 +132,15 @@ class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener, Sor
         toast.show()
     }
 
-    // TODO save new element
-    /*
-    protected fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        val b = data.extras
         if (requestCode == 1234) {
             if (resultCode == Activity.RESULT_OK) {
-                val contactoModificado = Contacto(b!!.getString("nombre"), b.getString("telefono"), b.getInt("tipo"),
-                        b.getString("email"), b.getString("direccion"))
-                contactos!![contactoSeleccionado] = contactoModificado
-                adaptador!!.notifyDataSetChanged()
+                val product = ProductManager.intentToProduct(data)
+                if (product != null)
+                    ProductManager.products[ProductManager.getProductSelected()] = product
+                lsAdapter?.notifyDataSetChanged()
             }
         }
     }
-    */
 }
