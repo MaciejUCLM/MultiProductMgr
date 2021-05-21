@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#232323"
     tools:context=".MainActivity">
-
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -17,15 +15,9 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimaryDark"
             android:elevation="4dp"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark">
-
-        </androidx.appcompat.widget.Toolbar>
-
-
-
+            android:theme="@style/Theme.MultiProductManager.AppBarOverlay"
+            app:popupTheme="@style/Theme.MultiProductManager.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -35,9 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:backgroundTint="#2E2E2E"
         android:backgroundTintMode="add"
-        app:backgroundTint="#000000"
         app:srcCompat="@android:drawable/ic_input_add" />
 
     <include layout="@layout/content_main" />

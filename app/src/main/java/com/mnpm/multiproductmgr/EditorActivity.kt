@@ -10,21 +10,13 @@ import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.*
 
 class EditorActivity : AppCompatActivity() {
-    private var txtNombreC: EditText? = null
-    private var txtTelefonoC: EditText? = null
-    private var spinnerTipo: Spinner? = null
-    private var txtEmailC: EditText? = null
-    private var txtDireccionC: EditText? = null
-
     private var btnGuardarC: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editor)
-        val toolbar: Toolbar = findViewById(R.id.toolbar)
-        setSupportActionBar(toolbar)
 
-        var layout = findViewById<LinearLayout>(R.id.mainEditorLayout)
+        val layout = findViewById<LinearLayout>(R.id.mainEditorLayout)
         val unwrappedDrawable = resources.getDrawable(R.drawable.custom_item)
         val wrappedDrawable: Drawable = DrawableCompat.wrap(unwrappedDrawable)
 
@@ -66,12 +58,13 @@ class EditorActivity : AppCompatActivity() {
                 findViewById<EditText>(R.id.carProductionYearField)
         )
 
-        //Recoger los datos enviados por la primera actividad y mostrarlos en la GUI
+        /*/Recoger los datos enviados por la primera actividad y mostrarlos en la GUI
         val bundle = intent.extras
         for ((i, name) in carFieldName.withIndex())
             carFields[i].setText(bundle!!.getString(name))
+        */
 
-        btnGuardarC = findViewById(R.id.btnGuardarC) as Button
+        btnGuardarC = findViewById<Button>(R.id.btnGuardarC)
         btnGuardarC!!.setOnClickListener(View.OnClickListener {
             val carData = Array<String>(carFields.size) { i -> ""}
             for((i, field) in carFields.withIndex())

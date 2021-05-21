@@ -2,6 +2,7 @@
     <string name="app_name">Car Manager</string>
 
     <string name="action_create">Create</string>
+    <string name="action_edit">Edit</string>
     <string name="action_sort">Sort</string>
 
     <string name="edit_save">Save</string>
