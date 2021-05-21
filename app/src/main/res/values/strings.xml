@@ -5,7 +5,7 @@
     <string name="action_edit">Edit</string>
     <string name="action_sort">Sort</string>
     <string name="action_delete">Delete</string>
-    <string name="action_view">View</string>
+    <string name="action_view">Show</string>
 
     <string name="edit_save">Save</string>
     <string name="edit_saved">Car saved</string>
@@ -36,7 +36,8 @@
     <string name="sorted_year">Sorted by year</string>
     <string name="sorted_name">Sorted by name</string>
     <string name="sorted_type">Sorted by type</string>
-    <string name="deleted">Element deleted</string>
+    <string name="deleted">Entry deleted</string>
+    <string name="data_incorrect">Data incorrect</string>
 
     <string name="dialog_delete">Delete selected entry?</string>
     <string name="dialog_sort">Sort by</string>

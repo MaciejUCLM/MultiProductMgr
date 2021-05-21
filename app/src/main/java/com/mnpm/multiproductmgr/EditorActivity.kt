@@ -1,5 +1,6 @@
 package com.mnpm.multiproductmgr
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.*
@@ -10,6 +11,7 @@ import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.*
 
 class EditorActivity : AppCompatActivity() {
+
     private var btnGuardarC: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,16 +42,6 @@ class EditorActivity : AppCompatActivity() {
             }
         }
 
-        // Obtenemos las referencias a los elementos gráficos de la GUI
-        val carFieldName = arrayOf<String>(
-                "carNameField",
-                "carPowerField",
-                "carMaxVelocityField",
-                "carTypeField",
-                "carProductionYearField",
-                "carMassField"
-        )
-
         val nameField = findViewById<EditText>(R.id.carNameField)
         val powerField = findViewById<EditText>(R.id.carPowerField)
         val maxVelocityField = findViewById<EditText>(R.id.carMaxVelocityField)
@@ -57,45 +49,44 @@ class EditorActivity : AppCompatActivity() {
         val productionYearField = findViewById<EditText>(R.id.carProductionYearField)
         val massField = findViewById<EditText>(R.id.carMassField)
 
-        /*
-        nameField
-        powerField
-        maxVelocityField
-        massField
-        productionYearField
-         */
-
-        //Recoger los datos enviados por la primera actividad y mostrarlos en la GUI
-        val bundle = intent.extras
-        if(bundle != null) {
-            nameField.setText(bundle.getString(carFieldName[0]))
-            powerField.setText(bundle.getString(carFieldName[1]))
-            maxVelocityField.setText(bundle.getString(carFieldName[2]))
-            typeField.setSelection(bundle.getInt(carFieldName[3]))
-            productionYearField.setText(bundle.getString(carFieldName[4]))
-            massField.setText(bundle.getString(carFieldName[5]))
+        // load provided product
+        val product = ProductManager.intentToProduct(intent)
+        product?.let {
+            nameField.setText(it.name)
+            powerField.setText(it.power.toString())
+            maxVelocityField.setText(it.maxVelocity.toString())
+            typeField.setSelection(it.type!!.ordinal)
+            productionYearField.setText(it.productionYear.toString())
+            massField.setText(it.mass.toString())
         }
 
-
         btnGuardarC = findViewById<Button>(R.id.btnGuardarC)
-        btnGuardarC!!.setOnClickListener(View.OnClickListener {
-            Intent(this, MainActivity::class.java).apply {
-                putExtra("name", nameField.text.toString())
-                putExtra("power", powerField.text.toString().toInt())
-                putExtra("maxVelocity", maxVelocityField.text.toString().toInt())
-                putExtra("type", typeField.selectedItemPosition)
-                putExtra("mass", massField.text.toString().toInt())
-                putExtra("productionYear", productionYearField.text.toString().toInt())
+        btnGuardarC?.setOnClickListener(View.OnClickListener {
+            if (validateFields()) {
+                val p = Product(nameField.text.toString(),
+                        ProductTypes.values()[typeField.selectedItemPosition],
+                        powerField.text.toString().toInt(),
+                        maxVelocityField.text.toString().toInt(),
+                        massField.text.toString().toInt(),
+                        productionYearField.text.toString().toInt())
+                val data = ProductManager.productToIntent(Intent(), p)
+
+                val text = R.string.edit_saved
+                val toast = Toast.makeText(applicationContext, text, Toast.LENGTH_SHORT)
+                toast.show()
+
+                setResult(Activity.RESULT_OK, data)
+                finish()
+            } else {
+                val text = R.string.data_incorrect
+                val toast = Toast.makeText(applicationContext, text, Toast.LENGTH_SHORT)
+                toast.show()
             }
-
-            val text = R.string.edit_saved
-            val duration = Toast.LENGTH_SHORT
-            val toast = Toast.makeText(applicationContext, text, duration)
-            toast.show()
-            //val newCar = Product(*carData)
-            //setResult(Activity.RESULT_OK, newCar)
-            finish()
         })
+    }
 
+    fun validateFields(): Boolean {
+        // TODO fix me
+        return false
     }
 }

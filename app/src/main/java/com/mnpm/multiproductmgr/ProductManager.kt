@@ -32,8 +32,7 @@ object ProductManager {
         productSelected = position
     }
 
-    fun productToIntent(intent: Intent): Intent {
-        val p = getProduct()
+    fun productToIntent(intent: Intent, p: Product): Intent {
         intent.apply {
             putExtra("carName", p.name)
             putExtra("carType", p.type!!.ordinal)
