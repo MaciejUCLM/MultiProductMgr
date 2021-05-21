@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity(), SortDialogListenerI, DeleteDialogListe
 
     fun openDetails() {
         val intent = ProductManager.productToIntent(
-                Intent(this, DetailsActivity::class.java))
+                Intent(this, DetailsActivity::class.java), ProductManager.getProduct())
         startActivity(intent)
     }
 
@@ -101,8 +101,9 @@ class MainActivity : AppCompatActivity(), SortDialogListenerI, DeleteDialogListe
                 true
             }
             R.id.action_edit -> {
-                val i = ProductManager.productToIntent(Intent(this, EditorActivity::class.java))
-                startActivity(i)
+                val i = ProductManager.productToIntent(
+                        Intent(this, EditorActivity::class.java), ProductManager.getProduct())
+                startActivityForResult(i, 1234)
                 true
             }
             R.id.action_delete -> {

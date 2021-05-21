@@ -1,5 +1,6 @@
 package com.mnpm.multiproductmgr
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.*
@@ -10,11 +11,25 @@ import androidx.core.graphics.drawable.DrawableCompat
 import androidx.core.view.*
 
 class EditorActivity : AppCompatActivity() {
-    private var btnGuardarC: Button? = null
+
+    private var btnSave: Button? = null
+    private var nameField: EditText? = null
+    private var powerField: EditText? = null
+    private var maxVelocityField: EditText? = null
+    private var typeField: Spinner? = null
+    private var productionYearField: EditText? = null
+    private var massField: EditText? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editor)
+
+        nameField = findViewById(R.id.carNameField)
+        powerField = findViewById(R.id.carPowerField)
+        maxVelocityField = findViewById(R.id.carMaxVelocityField)
+        typeField = findViewById(R.id.carTypeField)
+        productionYearField = findViewById(R.id.carProductionYearField)
+        massField = findViewById(R.id.carMassField)
 
         val layout = findViewById<LinearLayout>(R.id.insideMainLayout)
         val unwrappedDrawable = resources.getDrawable(R.drawable.custom_item)
@@ -40,62 +55,48 @@ class EditorActivity : AppCompatActivity() {
             }
         }
 
-        // Obtenemos las referencias a los elementos gráficos de la GUI
-        val carFieldName = arrayOf<String>(
-                "carNameField",
-                "carPowerField",
-                "carMaxVelocityField",
-                "carTypeField",
-                "carProductionYearField",
-                "carMassField"
-        )
-
-        val nameField = findViewById<EditText>(R.id.carNameField)
-        val powerField = findViewById<EditText>(R.id.carPowerField)
-        val maxVelocityField = findViewById<EditText>(R.id.carMaxVelocityField)
-        val typeField = findViewById<Spinner>(R.id.carTypeField)
-        val productionYearField = findViewById<EditText>(R.id.carProductionYearField)
-        val massField = findViewById<EditText>(R.id.carMassField)
-
-        /*
-        nameField
-        powerField
-        maxVelocityField
-        massField
-        productionYearField
-         */
-
-        //Recoger los datos enviados por la primera actividad y mostrarlos en la GUI
-        val bundle = intent.extras
-        if(bundle != null) {
-            nameField.setText(bundle.getString(carFieldName[0]))
-            powerField.setText(bundle.getString(carFieldName[1]))
-            maxVelocityField.setText(bundle.getString(carFieldName[2]))
-            typeField.setSelection(bundle.getInt(carFieldName[3]))
-            productionYearField.setText(bundle.getString(carFieldName[4]))
-            massField.setText(bundle.getString(carFieldName[5]))
+        // load provided product
+        val product = ProductManager.intentToProduct(intent)
+        product?.let {
+            nameField?.setText(it.name)
+            powerField?.setText(it.power.toString())
+            maxVelocityField?.setText(it.maxVelocity.toString())
+            typeField?.setSelection(it.type!!.ordinal)
+            productionYearField?.setText(it.productionYear.toString())
+            massField?.setText(it.mass.toString())
         }
 
+        btnSave = findViewById(R.id.btnSave)
+        btnSave?.setOnClickListener {
+            if (validateFields()) {
+                val p = Product(nameField!!.text.toString(),
+                        ProductTypes.values()[typeField!!.selectedItemPosition],
+                        powerField!!.text.toString().toInt(),
+                        maxVelocityField!!.text.toString().toInt(),
+                        massField!!.text.toString().toInt(),
+                        productionYearField!!.text.toString().toInt())
+                val data = ProductManager.productToIntent(Intent(), p)
 
-        btnGuardarC = findViewById<Button>(R.id.btnGuardarC)
-        btnGuardarC!!.setOnClickListener(View.OnClickListener {
-            Intent(this, MainActivity::class.java).apply {
-                putExtra("name", nameField.text.toString())
-                putExtra("power", powerField.text.toString().toInt())
-                putExtra("maxVelocity", maxVelocityField.text.toString().toInt())
-                putExtra("type", typeField.selectedItemPosition)
-                putExtra("mass", massField.text.toString().toInt())
-                putExtra("productionYear", productionYearField.text.toString().toInt())
+                val text = R.string.edit_saved
+                val toast = Toast.makeText(applicationContext, text, Toast.LENGTH_SHORT)
+                toast.show()
+
+                setResult(Activity.RESULT_OK, data)
+                finish()
+            } else {
+                val text = R.string.data_incorrect
+                val toast = Toast.makeText(applicationContext, text, Toast.LENGTH_SHORT)
+                toast.show()
             }
+        }
+    }
 
-            val text = R.string.edit_saved
-            val duration = Toast.LENGTH_SHORT
-            val toast = Toast.makeText(applicationContext, text, duration)
-            toast.show()
-            //val newCar = Product(*carData)
-            //setResult(Activity.RESULT_OK, newCar)
-            finish()
-        })
-
+    private fun validateFields(): Boolean {
+        // TODO mark red bad fields
+        return nameField!!.text.isNotEmpty() &&
+                powerField!!.text.isNotEmpty() &&
+                maxVelocityField!!.text.isNotEmpty() &&
+                productionYearField!!.text.isNotEmpty() &&
+                massField!!.text.isNotEmpty()
     }
 }
