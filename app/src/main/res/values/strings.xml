@@ -12,10 +12,18 @@
     <string name="edit_name">Car name</string>
     <string name="edit_power">Power</string>
     <string name="edit_max_speed">Max speed</string>
-    <string name="edit_combustible">Combustible</string>
+    <string name="edit_type">Type</string>
     <string name="edit_emission">Emission CO2</string>
     <string name="edit_year">Production year</string>
     <string name="edit_mass">Mass</string>
+
+    <string-array name="type_array">
+        <item>Station Wagon</item>
+        <item>Hatchback</item>
+        <item>Coupe</item>
+        <item>Convertible</item>
+    </string-array>
+
 
     <string name="title_car">Car Title</string>
     <string name="model_car">Model : </string>
