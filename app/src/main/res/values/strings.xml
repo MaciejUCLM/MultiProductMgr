@@ -17,14 +17,6 @@
     <string name="edit_year">Production year</string>
     <string name="edit_mass">Mass</string>
 
-    <string-array name="type_array">
-        <item>Station Wagon</item>
-        <item>Hatchback</item>
-        <item>Coupe</item>
-        <item>Convertible</item>
-    </string-array>
-
-
     <string name="title_car">Car Title</string>
     <string name="model_car">Model : </string>
     <string name="engine_car">Engine : </string>
