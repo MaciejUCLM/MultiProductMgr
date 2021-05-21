@@ -12,7 +12,7 @@ import androidx.core.view.*
 
 class EditorActivity : AppCompatActivity() {
 
-    private var btnGuardarC: Button? = null
+    private var btnSave: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,8 +60,8 @@ class EditorActivity : AppCompatActivity() {
             massField.setText(it.mass.toString())
         }
 
-        btnGuardarC = findViewById<Button>(R.id.btnGuardarC)
-        btnGuardarC?.setOnClickListener(View.OnClickListener {
+        btnSave = findViewById<Button>(R.id.btnSave)
+        btnSave?.setOnClickListener(View.OnClickListener {
             if (validateFields()) {
                 val p = Product(nameField.text.toString(),
                         ProductTypes.values()[typeField.selectedItemPosition],
