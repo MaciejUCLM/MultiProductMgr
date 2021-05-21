@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="sorting">
+        <item>Name</item>
+        <item>Year</item>
+        <item>Type</item>
+    </array>
+
+    <string-array name="type_array">
+        <item>Station Wagon</item>
+        <item>Hatchback</item>
+        <item>Coupe</item>
+        <item>Convertible</item>
+    </string-array>
+</resources>

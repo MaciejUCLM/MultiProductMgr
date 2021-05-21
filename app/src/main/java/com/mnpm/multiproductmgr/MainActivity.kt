@@ -1,29 +1,29 @@
 package com.mnpm.multiproductmgr
 
+import android.app.Activity
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
+import android.view.*
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.PopupMenu
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), SortDialogListenerI, DeleteDialogListenerI {
 
-    private val productSelected = 0
-
-    private var products: ArrayList<Product>? = null
-    private var lstProducts: RecyclerView? = null
-
+    private var lsProducts: RecyclerView? = null
     private var lsAdapter: ListAdapter? = null
+
+    fun openDetails() {
+        val intent = ProductManager.productToIntent(
+                Intent(this, DetailsActivity::class.java))
+        startActivity(intent)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,30 +37,41 @@ class MainActivity : AppCompatActivity() {
             startActivity(i)
         }
 
-        lstProducts = findViewById(R.id.lstProducts)
-        products = ArrayList()
-        // TODO load example data here
-        products!!.add(Product("Ford Focus Mk1", ProductTypes.HATCHBACK, 110, 180, 1900, 2003))
-        // TODO improve
         val mLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(applicationContext)
-        lstProducts!!.layoutManager = mLayoutManager
-        lsAdapter = ListAdapter(products)
-        lstProducts!!.adapter = lsAdapter
+        lsAdapter = ListAdapter(ProductManager.products)
+        lsProducts = findViewById(R.id.lstProducts)
+        lsProducts!!.layoutManager = mLayoutManager
+        lsProducts!!.adapter = lsAdapter
+        lsProducts!!.addItemDecoration(DividerItemDecoration(this, LinearLayoutManager.VERTICAL))
 
-        val i = Intent(this, EditorActivity::class.java).apply {
-            putExtra("product", productSelected)
-        }
+        lsAdapter!!.setListener(object : OnItemSelectedListenerI {
+            override fun onItemSelected(view: View, position: Int) {
+                ProductManager.setProductSelected(position)
+                openDetails()
+            }
+        })
+        lsAdapter!!.setLongListener(object : OnItemSelectedListenerI {
+            override fun onItemSelected(view: View, position: Int) {
+                ProductManager.setProductSelected(position)
+            }
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
-        // TODO search event
-        /*
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem?.actionView as SearchView
-        searchView.setOnQueryTextListener({ i -> null })
-        */
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextChange(newText: String?): Boolean {
+                lsAdapter?.filterList(newText)
+                return true
+            }
+
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+        })
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -70,11 +81,9 @@ class MainActivity : AppCompatActivity() {
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_sort -> {
-                // TODO execute sorting action
-                val text = R.string.action_sort
-                val duration = Toast.LENGTH_SHORT
-                val toast = Toast.makeText(applicationContext, text, duration)
-                toast.show()
+                val dialog = SortDialog()
+                dialog.setParent(this)
+                dialog.show(supportFragmentManager, "sort")
                 true
             }
             else -> {
@@ -85,26 +94,60 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun showPopup(v: View) {
-        val popup = PopupMenu(this, v)
-        val inflater: MenuInflater = popup.menuInflater
-        inflater.inflate(R.menu.popup, popup.menu)
-        popup.show()
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_view -> {
+                openDetails()
+                true
+            }
+            R.id.action_edit -> {
+                val i = ProductManager.productToIntent(Intent(this, EditorActivity::class.java))
+                startActivity(i)
+                true
+            }
+            R.id.action_delete -> {
+                val dialog = DeleteDialog()
+                dialog.setParent(this)
+                dialog.show(supportFragmentManager, "delete")
+                true
+            }
+            else -> super.onContextItemSelected(item)
+        }
     }
 
-    // TODO save new element
-    /*
-    protected fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+    override fun deleteDialogAccepted(dialog: DialogInterface) {
+        ProductManager.removeSelectedProduct()
+        lsAdapter?.notifyDataSetChanged()
+        val toast = Toast.makeText(applicationContext, R.string.deleted, Toast.LENGTH_SHORT)
+        toast.show()
+    }
+
+    override fun deleteDialogCancelled(dialog: DialogInterface) {
+        val toast = Toast.makeText(applicationContext, R.string.cancel, Toast.LENGTH_SHORT)
+        toast.show()
+    }
+
+    override fun sortDialogSelected(dialog: DialogInterface, mode: Int) {
+        lsAdapter?.sortElements(mode)
+        var text = when (mode) {
+            SortDialogListenerI.SORT_NAME -> R.string.sorted_name
+            SortDialogListenerI.SORT_YEAR -> R.string.sorted_year
+            SortDialogListenerI.SORT_TYPE -> R.string.sorted_type
+            else -> R.string.cancel
+        }
+        val toast = Toast.makeText(applicationContext, text, Toast.LENGTH_SHORT)
+        toast.show()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        val b = data.extras
         if (requestCode == 1234) {
             if (resultCode == Activity.RESULT_OK) {
-                val contactoModificado = Contacto(b!!.getString("nombre"), b.getString("telefono"), b.getInt("tipo"),
-                        b.getString("email"), b.getString("direccion"))
-                contactos!![contactoSeleccionado] = contactoModificado
-                adaptador!!.notifyDataSetChanged()
+                val product = ProductManager.intentToProduct(data)
+                if (product != null)
+                    ProductManager.products[ProductManager.getProductSelected()] = product
+                lsAdapter?.notifyDataSetChanged()
             }
         }
     }
-    */
 }

@@ -24,12 +24,12 @@ enum class ProductTypes {
 
 class Product {
 
-    private var name: String? = null
-    private var type: ProductTypes? = null
-    private var power: Int? = null
-    private var maxVelocity: Int? = null
-    private var mass: Int? = null
-    private var productionYear: Int? = null
+    var name: String? = null
+    var type: ProductTypes? = null
+    var power: Int? = null
+    var maxVelocity: Int? = null
+    var mass: Int? = null
+    var productionYear: Int? = null
 
     constructor(name: String, type: ProductTypes, power: Int, maxVelocity: Int, mass: Int, productionYear: Int) {
         this.name = name
@@ -40,4 +40,15 @@ class Product {
         this.productionYear = productionYear
     }
 
+    fun getNombre(): String? {
+        return name
+    }
+
+    fun getTipo(): ProductTypes? {
+        return type
+    }
+
+    fun getYear(): Int? {
+        return productionYear
+    }
 }
