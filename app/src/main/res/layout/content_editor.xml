@@ -36,8 +36,7 @@
                 android:layout_marginRight="@dimen/fab_margin"
                 android:background="@drawable/custom_item"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:importantForAutofill="no" />
+                android:inputType="textPersonName" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -65,7 +64,7 @@
                 android:layout_marginLeft="@dimen/fab_margin"
                 android:layout_marginTop="@dimen/small_margin"
                 android:layout_marginRight="@dimen/fab_margin"
-                android:background="@color/design_default_color_on_primary"
+                android:background="@drawable/custom_item"
                 android:ems="10"
                 android:inputType="textPersonName" />
 
@@ -95,7 +94,7 @@
                 android:layout_marginLeft="@dimen/fab_margin"
                 android:layout_marginTop="@dimen/small_margin"
                 android:layout_marginRight="@dimen/fab_margin"
-                android:background="@color/design_default_color_on_primary"
+                android:background="@drawable/custom_item"
                 android:ems="10"
                 android:inputType="textPersonName" />
 
@@ -125,7 +124,7 @@
                 android:layout_marginLeft="@dimen/fab_margin"
                 android:layout_marginTop="@dimen/small_margin"
                 android:layout_marginRight="@dimen/fab_margin"
-                android:background="@color/design_default_color_on_primary"
+                android:background="@drawable/custom_item"
                 android:ems="10"
                 android:inputType="textPersonName" />
 
@@ -155,7 +154,7 @@
                 android:layout_marginLeft="@dimen/fab_margin"
                 android:layout_marginTop="@dimen/small_margin"
                 android:layout_marginRight="@dimen/fab_margin"
-                android:background="@color/design_default_color_on_primary"
+                android:background="@drawable/custom_item"
                 android:ems="10"
                 android:inputType="textPersonName" />
 
@@ -184,7 +183,7 @@
                 android:layout_marginLeft="@dimen/fab_margin"
                 android:layout_marginTop="@dimen/small_margin"
                 android:layout_marginRight="@dimen/fab_margin"
-                android:background="@color/design_default_color_on_primary"
+                android:background="@drawable/custom_item"
                 android:ems="10"
                 android:inputType="textPersonName" />
 
