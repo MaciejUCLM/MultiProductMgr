@@ -36,6 +36,7 @@
     <string name="sorted_year">Sorted by year</string>
     <string name="sorted_name">Sorted by name</string>
     <string name="sorted_type">Sorted by type</string>
+    <string name="deleted">Element deleted</string>
 
     <string name="dialog_delete">Delete selected entry?</string>
     <string name="dialog_sort">Sort by</string>

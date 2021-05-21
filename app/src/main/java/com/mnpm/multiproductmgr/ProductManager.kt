@@ -8,6 +8,18 @@ object ProductManager {
     private var productSelected: Int = 0
     var products: ArrayList<Product> = ArrayList()
 
+    init {
+        loadExampleData()
+    }
+
+    fun removeSelectedProduct() {
+        products.removeAt(productSelected)
+    }
+
+    fun addNewProduct(p: Product) {
+        products.add(p)
+    }
+
     fun getProduct(): Product {
         return products[productSelected]
     }
@@ -46,6 +58,17 @@ object ProductManager {
         val speed = bundle?.getInt("carSpeed")
         val mass = bundle?.getInt("carMass")
         return Product(name!!, ProductTypes.values()[type!!], power!!, speed!!, mass!!, year!!)
+    }
+
+    private fun loadExampleData() {
+        products.add(Product("Ford Focus Mk2",
+                ProductTypes.HATCHBACK, 110, 180, 1900, 2003))
+        products.add(Product("Mazda MX-5",
+                ProductTypes.CONVERTIBLE, 160, 240, 950, 2018))
+        products.add(Product("BMW M2",
+                ProductTypes.COUPE, 220, 260, 1500, 2013))
+        products.add(Product("Volvo V70",
+                ProductTypes.WAGON, 130, 180, 1800, 2005))
     }
 
 }

@@ -17,7 +17,7 @@ class SortDialog : DialogFragment() {
         return activity?.let {
             // Use the Builder class for convenient dialog construction
             val builder = AlertDialog.Builder(it)
-            builder.setMessage(R.string.dialog_sort)
+            builder.setTitle(R.string.dialog_sort)
                     .setItems(R.array.sorting) { dialog, which ->
                         parent?.sortDialogSelected(dialog, which)
                     }

@@ -1,9 +1,9 @@
 package com.mnpm.multiproductmgr
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
-import android.widget.AdapterView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
@@ -13,10 +13,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
+class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener, SortDialogListenerI, DeleteDialogListenerI {
 
     private var lsProducts: RecyclerView? = null
     private var lsAdapter: ListAdapter? = null
+
+    fun openDetails() {
+        val intent = ProductManager.productToIntent(
+                Intent(this, DetailsActivity::class.java))
+        startActivity(intent)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,8 +36,6 @@ class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
             startActivity(i)
         }
 
-        loadExampleData()
-
         val mLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(applicationContext)
         lsAdapter = ListAdapter(ProductManager.products)
         lsProducts = findViewById(R.id.lstProducts)
@@ -42,9 +46,7 @@ class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
         lsAdapter!!.setListener(object : OnItemSelectedListenerI {
             override fun onItemSelected(view: View, position: Int) {
                 ProductManager.setProductSelected(position)
-                val intent = ProductManager.productToIntent(
-                        Intent(this@MainActivity, DetailsActivity::class.java))
-                startActivity(intent)
+                openDetails()
             }
         })
         lsAdapter!!.setLongListener(object : OnItemSelectedListenerI {
@@ -72,11 +74,8 @@ class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_sort -> {
-                // TODO open sort dialog
-                val text = R.string.action_sort
-                val duration = Toast.LENGTH_SHORT
-                val toast = Toast.makeText(applicationContext, text, duration)
-                toast.show()
+                val dialog = SortDialog()
+                dialog.show(supportFragmentManager, "sort")
                 true
             }
             else -> {
@@ -121,6 +120,21 @@ class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
         }
     }
 
+    override fun deleteDialogAccepted(dialog: DialogInterface) {
+        ProductManager.removeSelectedProduct()
+        val toast = Toast.makeText(applicationContext, R.string.deleted, Toast.LENGTH_SHORT)
+        toast.show()
+    }
+
+    override fun deleteDialogCancelled(dialog: DialogInterface) {
+        val toast = Toast.makeText(applicationContext, R.string.cancel, Toast.LENGTH_SHORT)
+        toast.show()
+    }
+
+    override fun sortDialogSelected(dialog: DialogInterface, mode: Int) {
+        lsAdapter?.sortElements(mode)
+    }
+
     // TODO save new element
     /*
     protected fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
@@ -136,15 +150,4 @@ class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
         }
     }
     */
-
-    private fun loadExampleData() {
-        ProductManager.products.add(Product("Ford Focus Mk2",
-                ProductTypes.HATCHBACK, 110, 180, 1900, 2003))
-        ProductManager.products.add(Product("Mazda MX-5",
-                ProductTypes.CONVERTIBLE, 160, 240, 950, 2018))
-        ProductManager.products.add(Product("BMW M2",
-                ProductTypes.COUPE, 220, 260, 1500, 2013))
-        ProductManager.products.add(Product("Volvo V70",
-                ProductTypes.WAGON, 130, 180, 1800, 2005))
-    }
 }
