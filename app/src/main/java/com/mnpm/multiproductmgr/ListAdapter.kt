@@ -1,8 +1,6 @@
 package com.mnpm.multiproductmgr
 
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -11,12 +9,23 @@ import java.util.*
 class ListAdapter : RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     private var itemSelectedListener: OnItemSelectedListenerI? = null
+    private var longItemSelectedListener: OnItemSelectedListenerI? = null
     private var elementsList: ArrayList<Product>? = null
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnCreateContextMenuListener {
         val lblName: TextView = view.findViewById(R.id.lblNombre)
         val lblYear: TextView = view.findViewById(R.id.lblTelefono)
         val imgType: ImageView = view.findViewById(R.id.imagContacto)
+
+        init {
+            view.setOnCreateContextMenuListener(this)
+        }
+
+        override fun onCreateContextMenu(menu: ContextMenu, view: View, menuInfo: ContextMenu.ContextMenuInfo?) {
+            menu.add(Menu.NONE, R.id.action_view, Menu.NONE, R.string.action_view)
+            menu.add(Menu.NONE, R.id.action_edit, Menu.NONE, R.string.action_edit)
+            menu.add(Menu.NONE, R.id.action_delete, Menu.NONE, R.string.action_delete)
+        }
     }
 
     constructor(list: ArrayList<Product>?) {
@@ -34,13 +43,26 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ViewHolder> {
         holder.lblName.text = p.name.toString()
         holder.lblYear.text = p.productionYear.toString()
         holder.imgType.setImageResource(p.type!!.getIcon())
+        holder.itemView.setOnLongClickListener {
+            longItemSelectedListener!!.onItemSelected(it, holder.adapterPosition)
+            false
+        }
         holder.itemView.setOnClickListener {
             itemSelectedListener!!.onItemSelected(it, holder.adapterPosition)
         }
     }
 
+    override fun onViewRecycled(holder: ViewHolder) {
+        holder.itemView.setOnLongClickListener(null)
+        super.onViewRecycled(holder)
+    }
+
     override fun getItemCount(): Int {
         return elementsList!!.size
+    }
+
+    fun setLongListener(listener: OnItemSelectedListenerI) {
+        longItemSelectedListener = listener
     }
 
     fun setListener(listener: OnItemSelectedListenerI) {

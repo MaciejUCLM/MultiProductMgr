@@ -3,6 +3,7 @@ package com.mnpm.multiproductmgr
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
+import android.widget.AdapterView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
@@ -47,7 +48,12 @@ class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
         lsAdapter!!.setListener(object : OnItemSelectedListenerI {
             override fun onItemSelected(view: View, position: Int) {
                 productSelected = position
-                showPopup(view)
+                // TODO open details
+            }
+        })
+        lsAdapter!!.setLongListener(object : OnItemSelectedListenerI {
+            override fun onItemSelected(view: View, position: Int) {
+                productSelected = position
             }
         })
     }
@@ -101,18 +107,23 @@ class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
         }
     }
 
-    fun showPopup(v: View) {
-        PopupMenu(this, v).apply {
-            setOnMenuItemClickListener(this@MainActivity)
-            inflate(R.menu.popup)
-            show()
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        val info = item.menuInfo as AdapterView.AdapterContextMenuInfo
+        return when (item.itemId) {
+            R.id.action_view -> {
+                // TODO view
+                true
+            }
+            R.id.action_edit -> {
+                // TODO edit
+                true
+            }
+            R.id.action_delete -> {
+                // TODO delete
+                true
+            }
+            else -> super.onContextItemSelected(item)
         }
-    }
-
-    override fun onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenu.ContextMenuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo)
-        val inflater: MenuInflater = menuInflater
-        inflater.inflate(R.menu.popup, menu)
     }
 
     // TODO save new element
