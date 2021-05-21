@@ -37,19 +37,13 @@ class MainActivity : AppCompatActivity() {
             startActivity(i)
         }
 
-        lstProducts = findViewById(R.id.lstProducts)
         products = ArrayList()
-        // TODO load example data here
-        products!!.add(Product("Ford Focus Mk1", ProductTypes.HATCHBACK, 110, 180, 1900, 2003))
-        // TODO improve
+        loadExampleData()
+        lstProducts = findViewById(R.id.lstProducts)
         val mLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(applicationContext)
         lstProducts!!.layoutManager = mLayoutManager
         lsAdapter = ListAdapter(products)
         lstProducts!!.adapter = lsAdapter
-
-        val i = Intent(this, EditorActivity::class.java).apply {
-            putExtra("product", productSelected)
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -107,4 +101,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
     */
+
+    private fun loadExampleData() {
+        products!!.add(Product("Ford Focus Mk2", ProductTypes.HATCHBACK, 110, 180, 1900, 2003))
+        products!!.add(Product("Mazda MX-5", ProductTypes.CONVERTIBLE, 160, 240, 950, 2018))
+        products!!.add(Product("BMW M2", ProductTypes.COUPE, 220, 260, 1500, 2013))
+        products!!.add(Product("Volvo V70", ProductTypes.WAGON, 130, 180, 1800, 2005))
+    }
 }
