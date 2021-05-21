@@ -5,21 +5,26 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
+
 class ListAdapter : RecyclerView.Adapter<ListAdapter.ViewHolder> {
     private var contactos: ArrayList<Product>? = null
+    private var clickListener: OnItemSelectedListenerI<Product>? = null
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val lblNombre: TextView
         val lblTelefono: TextView
         val imagContacto: ImageView
+        var cardView: CardView? = null
 
         init {
             lblNombre = view.findViewById(R.id.lblNombre)
             lblTelefono = view.findViewById(R.id.lblTelefono)
             imagContacto = view.findViewById(R.id.imagContacto)
+            cardView = view.findViewById(R.id.carview)
         }
     }
 
@@ -31,6 +36,10 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ViewHolder> {
         val v = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_list, parent, false)
         return ViewHolder(v)
+    }
+
+    fun setOnItemClickListener(productClickListener: OnItemSelectedListenerI<Product>) {
+        this.clickListener = productClickListener
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -53,6 +62,10 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ViewHolder> {
                 holder.imagContacto.setBackgroundResource(ProductTypes.CONVERTIBLE.getIcon())
             }
         }
+
+        holder.cardView?.setOnClickListener(View.OnClickListener {
+            clickListener?.onContactoSeleccionado(contacto)
+        })
 
     }
 

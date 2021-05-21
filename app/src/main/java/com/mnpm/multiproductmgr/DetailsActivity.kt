@@ -11,4 +11,9 @@ class DetailsActivity : AppCompatActivity() {
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
     }
+    val model=intent.getStringExtra("Model")
+    val engine=intent.getStringExtra("Engine")
+    val desc=intent.getStringExtra("Description")
+
+
 }
