@@ -75,6 +75,7 @@ class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener, Sor
         return when (item.itemId) {
             R.id.action_sort -> {
                 val dialog = SortDialog()
+                dialog.setParent(this)
                 dialog.show(supportFragmentManager, "sort")
                 true
             }
@@ -133,6 +134,14 @@ class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener, Sor
 
     override fun sortDialogSelected(dialog: DialogInterface, mode: Int) {
         lsAdapter?.sortElements(mode)
+        var text = when (mode) {
+            SortDialogListenerI.SORT_NAME -> R.string.sorted_name
+            SortDialogListenerI.SORT_YEAR -> R.string.sorted_year
+            SortDialogListenerI.SORT_TYPE -> R.string.sorted_type
+            else -> R.string.cancel
+        }
+        val toast = Toast.makeText(applicationContext, text, Toast.LENGTH_SHORT)
+        toast.show()
     }
 
     // TODO save new element

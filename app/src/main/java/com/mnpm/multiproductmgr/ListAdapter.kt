@@ -75,5 +75,6 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ViewHolder> {
             SortDialogListenerI.SORT_YEAR -> elementsList!!.sortBy { p -> p.productionYear }
             SortDialogListenerI.SORT_TYPE -> elementsList!!.sortBy { p -> p.type }
         }
+        notifyDataSetChanged()
     }
 }
