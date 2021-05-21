@@ -66,8 +66,8 @@ class EditorActivity : AppCompatActivity() {
             massField?.setText(it.mass.toString())
         }
 
-        btnSave = findViewById<Button>(R.id.btnSave)
-        btnSave?.setOnClickListener(View.OnClickListener {
+        btnSave = findViewById(R.id.btnSave)
+        btnSave?.setOnClickListener {
             if (validateFields()) {
                 val p = Product(nameField!!.text.toString(),
                         ProductTypes.values()[typeField!!.selectedItemPosition],
@@ -88,10 +88,10 @@ class EditorActivity : AppCompatActivity() {
                 val toast = Toast.makeText(applicationContext, text, Toast.LENGTH_SHORT)
                 toast.show()
             }
-        })
+        }
     }
 
-    fun validateFields(): Boolean {
+    private fun validateFields(): Boolean {
         // TODO mark red bad fields
         return nameField!!.text.isNotEmpty() &&
                 powerField!!.text.isNotEmpty() &&
