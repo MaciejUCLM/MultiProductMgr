@@ -13,10 +13,23 @@ import androidx.core.view.*
 class EditorActivity : AppCompatActivity() {
 
     private var btnSave: Button? = null
+    private var nameField: EditText? = null
+    private var powerField: EditText? = null
+    private var maxVelocityField: EditText? = null
+    private var typeField: Spinner? = null
+    private var productionYearField: EditText? = null
+    private var massField: EditText? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editor)
+
+        nameField = findViewById(R.id.carNameField)
+        powerField = findViewById(R.id.carPowerField)
+        maxVelocityField = findViewById(R.id.carMaxVelocityField)
+        typeField = findViewById(R.id.carTypeField)
+        productionYearField = findViewById(R.id.carProductionYearField)
+        massField = findViewById(R.id.carMassField)
 
         val layout = findViewById<LinearLayout>(R.id.insideMainLayout)
         val unwrappedDrawable = resources.getDrawable(R.drawable.custom_item)
@@ -42,33 +55,26 @@ class EditorActivity : AppCompatActivity() {
             }
         }
 
-        val nameField = findViewById<EditText>(R.id.carNameField)
-        val powerField = findViewById<EditText>(R.id.carPowerField)
-        val maxVelocityField = findViewById<EditText>(R.id.carMaxVelocityField)
-        val typeField = findViewById<Spinner>(R.id.carTypeField)
-        val productionYearField = findViewById<EditText>(R.id.carProductionYearField)
-        val massField = findViewById<EditText>(R.id.carMassField)
-
         // load provided product
         val product = ProductManager.intentToProduct(intent)
         product?.let {
-            nameField.setText(it.name)
-            powerField.setText(it.power.toString())
-            maxVelocityField.setText(it.maxVelocity.toString())
-            typeField.setSelection(it.type!!.ordinal)
-            productionYearField.setText(it.productionYear.toString())
-            massField.setText(it.mass.toString())
+            nameField?.setText(it.name)
+            powerField?.setText(it.power.toString())
+            maxVelocityField?.setText(it.maxVelocity.toString())
+            typeField?.setSelection(it.type!!.ordinal)
+            productionYearField?.setText(it.productionYear.toString())
+            massField?.setText(it.mass.toString())
         }
 
         btnSave = findViewById<Button>(R.id.btnSave)
         btnSave?.setOnClickListener(View.OnClickListener {
             if (validateFields()) {
-                val p = Product(nameField.text.toString(),
-                        ProductTypes.values()[typeField.selectedItemPosition],
-                        powerField.text.toString().toInt(),
-                        maxVelocityField.text.toString().toInt(),
-                        massField.text.toString().toInt(),
-                        productionYearField.text.toString().toInt())
+                val p = Product(nameField!!.text.toString(),
+                        ProductTypes.values()[typeField!!.selectedItemPosition],
+                        powerField!!.text.toString().toInt(),
+                        maxVelocityField!!.text.toString().toInt(),
+                        massField!!.text.toString().toInt(),
+                        productionYearField!!.text.toString().toInt())
                 val data = ProductManager.productToIntent(Intent(), p)
 
                 val text = R.string.edit_saved
@@ -86,7 +92,11 @@ class EditorActivity : AppCompatActivity() {
     }
 
     fun validateFields(): Boolean {
-        // TODO fix me
-        return false
+        // TODO mark red bad fields
+        return nameField!!.text.isNotEmpty() &&
+                powerField!!.text.isNotEmpty() &&
+                maxVelocityField!!.text.isNotEmpty() &&
+                productionYearField!!.text.isNotEmpty() &&
+                massField!!.text.isNotEmpty()
     }
 }
