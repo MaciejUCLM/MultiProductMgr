@@ -39,16 +39,4 @@ class Product {
         this.mass = mass
         this.productionYear = productionYear
     }
-
-    fun getNombre(): String? {
-        return name
-    }
-
-    fun getTipo(): ProductTypes? {
-        return type
-    }
-
-    fun getYear(): Int? {
-        return productionYear
-    }
 }

@@ -22,7 +22,7 @@ class EditorActivity : AppCompatActivity() {
 
         layout.forEach { row ->
             if (row is LinearLayout && row.size > 2){
-                val field = row[1] as View
+                val field = row[1]
                 val label = row[2] as TextView
                 field.setOnFocusChangeListener { view, b ->
                     if (b) {
