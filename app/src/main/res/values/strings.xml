@@ -25,4 +25,8 @@
     <string name="engine_car_text">Engine Text</string>
     <string name="descr_car_text">Description Text</string>
     <string name="search">Search</string>
+
+    <string name="name">Name</string>
+    <string name="year">Year</string>
+    <string name="type">Type</string>
 </resources>

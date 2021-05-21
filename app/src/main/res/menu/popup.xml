@@ -12,7 +12,9 @@
         android:title="@string/action_edit"
         app:showAsAction="never" />
 
-    <group android:id="@+id/groupDestructive">
+    <group
+        android:id="@+id/groupDestructive"
+        android:menuCategory="secondary">
         <item
             android:id="@+id/action_delete"
             android:title="@string/action_delete"
