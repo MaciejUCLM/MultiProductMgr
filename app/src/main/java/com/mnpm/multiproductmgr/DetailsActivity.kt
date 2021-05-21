@@ -12,6 +12,8 @@ class DetailsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_details)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
+        // Get a support ActionBar corresponding to this toolbar and enable the Up button
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

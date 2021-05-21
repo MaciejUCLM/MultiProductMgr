@@ -6,7 +6,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import java.util.*
 
-class ListAdapter : RecyclerView.Adapter<ListAdapter.ViewHolder> {
+class ListAdapter : RecyclerView.Adapter<ListAdapter.ViewHolder>, SortI {
 
     private var itemSelectedListener: OnItemSelectedListenerI? = null
     private var longItemSelectedListener: OnItemSelectedListenerI? = null
@@ -69,7 +69,11 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ViewHolder> {
         itemSelectedListener = listener
     }
 
-    fun sortElements() {
-        elementsList!!.sortBy { p -> p.name }
+    override fun sortElements(mode: Int) {
+        when (mode) {
+            SortI.SORT_NAME -> elementsList!!.sortBy { p -> p.name }
+            SortI.SORT_YEAR -> elementsList!!.sortBy { p -> p.productionYear }
+            SortI.SORT_TYPE -> elementsList!!.sortBy { p -> p.type }
+        }
     }
 }

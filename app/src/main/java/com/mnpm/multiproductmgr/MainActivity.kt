@@ -42,9 +42,9 @@ class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
         lsAdapter!!.setListener(object : OnItemSelectedListenerI {
             override fun onItemSelected(view: View, position: Int) {
                 ProductManager.setProductSelected(position)
-                val intent = ProductManager.productToIntent(Intent(this@MainActivity, DetailsActivity::class.java))
+                val intent = ProductManager.productToIntent(
+                        Intent(this@MainActivity, DetailsActivity::class.java))
                 startActivity(intent)
-                // TODO open details
             }
         })
         lsAdapter!!.setLongListener(object : OnItemSelectedListenerI {
@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
             R.id.action_sort -> {
-                // TODO execute sorting action
+                // TODO open sort dialog
                 val text = R.string.action_sort
                 val duration = Toast.LENGTH_SHORT
                 val toast = Toast.makeText(applicationContext, text, duration)
@@ -138,9 +138,13 @@ class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
     */
 
     private fun loadExampleData() {
-        ProductManager.products.add(Product("Ford Focus Mk2", ProductTypes.HATCHBACK, 110, 180, 1900, 2003))
-        ProductManager.products.add(Product("Mazda MX-5", ProductTypes.CONVERTIBLE, 160, 240, 950, 2018))
-        ProductManager.products.add(Product("BMW M2", ProductTypes.COUPE, 220, 260, 1500, 2013))
-        ProductManager.products.add(Product("Volvo V70", ProductTypes.WAGON, 130, 180, 1800, 2005))
+        ProductManager.products.add(Product("Ford Focus Mk2",
+                ProductTypes.HATCHBACK, 110, 180, 1900, 2003))
+        ProductManager.products.add(Product("Mazda MX-5",
+                ProductTypes.CONVERTIBLE, 160, 240, 950, 2018))
+        ProductManager.products.add(Product("BMW M2",
+                ProductTypes.COUPE, 220, 260, 1500, 2013))
+        ProductManager.products.add(Product("Volvo V70",
+                ProductTypes.WAGON, 130, 180, 1800, 2005))
     }
 }
