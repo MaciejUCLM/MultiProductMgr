@@ -12,15 +12,10 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import java.util.*
 
 class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
 
-    private var productSelected = 0
-
-    private var products: ArrayList<Product>? = null
     private var lsProducts: RecyclerView? = null
-
     private var lsAdapter: ListAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,11 +30,10 @@ class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
             startActivity(i)
         }
 
-        products = ArrayList()
         loadExampleData()
 
         val mLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(applicationContext)
-        lsAdapter = ListAdapter(products)
+        lsAdapter = ListAdapter(ProductManager.products)
         lsProducts = findViewById(R.id.lstProducts)
         lsProducts!!.layoutManager = mLayoutManager
         lsProducts!!.adapter = lsAdapter
@@ -47,13 +41,15 @@ class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
 
         lsAdapter!!.setListener(object : OnItemSelectedListenerI {
             override fun onItemSelected(view: View, position: Int) {
-                productSelected = position
+                ProductManager.setProductSelected(position)
+                val intent = Intent(this@MainActivity, DetailsActivity::class.java)
+                ProductManager.putProductToIntent(intent)
                 // TODO open details
             }
         })
         lsAdapter!!.setLongListener(object : OnItemSelectedListenerI {
             override fun onItemSelected(view: View, position: Int) {
-                productSelected = position
+                ProductManager.setProductSelected(position)
             }
         })
     }
@@ -108,7 +104,6 @@ class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
-        val info = item.menuInfo as AdapterView.AdapterContextMenuInfo
         return when (item.itemId) {
             R.id.action_view -> {
                 // TODO view
@@ -143,9 +138,9 @@ class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
     */
 
     private fun loadExampleData() {
-        products!!.add(Product("Ford Focus Mk2", ProductTypes.HATCHBACK, 110, 180, 1900, 2003))
-        products!!.add(Product("Mazda MX-5", ProductTypes.CONVERTIBLE, 160, 240, 950, 2018))
-        products!!.add(Product("BMW M2", ProductTypes.COUPE, 220, 260, 1500, 2013))
-        products!!.add(Product("Volvo V70", ProductTypes.WAGON, 130, 180, 1800, 2005))
+        ProductManager.products.add(Product("Ford Focus Mk2", ProductTypes.HATCHBACK, 110, 180, 1900, 2003))
+        ProductManager.products.add(Product("Mazda MX-5", ProductTypes.CONVERTIBLE, 160, 240, 950, 2018))
+        ProductManager.products.add(Product("BMW M2", ProductTypes.COUPE, 220, 260, 1500, 2013))
+        ProductManager.products.add(Product("Volvo V70", ProductTypes.WAGON, 130, 180, 1800, 2005))
     }
 }
