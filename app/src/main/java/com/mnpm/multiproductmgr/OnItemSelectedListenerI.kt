@@ -1,5 +1,7 @@
 package com.mnpm.multiproductmgr
 
+import android.view.View
+
 interface OnItemSelectedListenerI {
-    fun onContactoSeleccionado(posicion: Int)
+    fun onItemSelected(view: View, position: Int)
 }
