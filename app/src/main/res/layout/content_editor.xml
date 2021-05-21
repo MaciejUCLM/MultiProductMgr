@@ -10,6 +10,7 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/insideMainLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -36,7 +37,7 @@
                 android:layout_marginRight="@dimen/fab_margin"
                 android:background="@drawable/custom_item"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="textShortMessage" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -44,6 +45,7 @@
                 android:layout_marginStart="@dimen/fab_margin"
                 android:text="" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -66,7 +68,7 @@
                 android:layout_marginRight="@dimen/fab_margin"
                 android:background="@drawable/custom_item"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -74,6 +76,7 @@
                 android:layout_marginStart="@dimen/fab_margin"
                 android:text="" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -96,7 +99,7 @@
                 android:layout_marginRight="@dimen/fab_margin"
                 android:background="@drawable/custom_item"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -104,6 +107,7 @@
                 android:layout_marginStart="@dimen/fab_margin"
                 android:text="" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -115,18 +119,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/fab_margin"
                 android:labelFor="@id/carCombustible"
-                android:text="@string/edit_combustible" />
+                android:text="@string/edit_type" />
 
-            <EditText
-                android:id="@+id/carCombustible"
+            <Spinner
+                android:id="@+id/carTypeField"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/fab_margin"
-                android:layout_marginTop="@dimen/small_margin"
-                android:layout_marginRight="@dimen/fab_margin"
+                android:layout_height="21dp"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/activity_vertical_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
                 android:background="@drawable/custom_item"
-                android:ems="10"
-                android:inputType="textPersonName" />
+                android:entries="@array/type_array" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -156,7 +159,7 @@
                 android:layout_marginRight="@dimen/fab_margin"
                 android:background="@drawable/custom_item"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -164,6 +167,7 @@
                 android:layout_marginStart="@dimen/fab_margin"
                 android:text="" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -185,7 +189,7 @@
                 android:layout_marginRight="@dimen/fab_margin"
                 android:background="@drawable/custom_item"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:inputType="number" />
 
             <TextView
                 android:layout_width="wrap_content"
