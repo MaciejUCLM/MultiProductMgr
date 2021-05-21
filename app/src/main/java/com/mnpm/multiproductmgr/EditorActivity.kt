@@ -23,7 +23,7 @@ class EditorActivity : AppCompatActivity() {
 
         layout.forEach { row ->
             if (row is LinearLayout && row.size > 2){
-                val field = row[1] as EditText
+                val field = row[1] as View
                 val label = row[2] as TextView
                 field.setOnFocusChangeListener { view, b ->
                     if (b) {
@@ -68,6 +68,7 @@ class EditorActivity : AppCompatActivity() {
 
         //Recoger los datos enviados por la primera actividad y mostrarlos en la GUI
         val bundle = intent.extras
+        print(bundle)
         nameField.setText(bundle!!.getString(carFieldName[0]))
         powerField.setText(bundle.getString(carFieldName[1]))
         maxVelocityField.setText(bundle.getString(carFieldName[2]))
