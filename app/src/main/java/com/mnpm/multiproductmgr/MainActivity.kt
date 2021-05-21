@@ -9,12 +9,12 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
+import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.util.*
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -44,25 +44,8 @@ class MainActivity : AppCompatActivity() {
         products!!.add(Product("Fiat Punto", ProductTypes.HATCHBACK, 90, 180, 1500, 2012))
         // TODO improve
         val mLayoutManager: RecyclerView.LayoutManager = LinearLayoutManager(applicationContext)
-
-
-
         lstProducts!!.layoutManager = mLayoutManager
         lsAdapter = ListAdapter(products)
-
-
-        lsAdapter!!.setOnItemClickListener(object : OnItemSelectedListenerI<Product> {
-            override fun onContactoSeleccionado(posicion: Product) {
-                Toast.makeText(this@MainActivity, posicion.getNombre(), Toast.LENGTH_SHORT).show()
-                val intent = Intent(this@MainActivity, DetailsActivity::class.java).apply {
-                    putExtra("Model", posicion.getNombre())
-                    putExtra("Engine", posicion.getYear().toString())
-                    putExtra("Description", posicion.getTipo()?.getString())
-                }
-                startActivity(intent)
-            }
-        })
-
         lstProducts!!.adapter = lsAdapter
 
         val i = Intent(this, EditorActivity::class.java).apply {
