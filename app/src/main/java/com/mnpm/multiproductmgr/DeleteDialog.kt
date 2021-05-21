@@ -7,16 +7,22 @@ import androidx.fragment.app.DialogFragment
 
 class DeleteDialog : DialogFragment() {
 
+    private var parent: DeleteDialogListenerI? = null
+
+    fun setParent(parent: DeleteDialogListenerI) {
+        this.parent = parent
+    }
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             // Use the Builder class for convenient dialog construction
             val builder = AlertDialog.Builder(it)
             builder.setMessage(R.string.dialog_delete)
                     .setPositiveButton(R.string.yes) { dialog, id ->
-                        // FIRE ZE MISSILES!
+                        parent?.deleteDialogAccepted(dialog)
                     }
                     .setNegativeButton(R.string.no) { dialog, id ->
-                        // User cancelled the dialog
+                        parent?.deleteDialogCancelled(dialog)
                     }
             // Create the AlertDialog object and return it
             builder.create()

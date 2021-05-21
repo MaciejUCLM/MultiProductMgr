@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="sorting">
+        <item>Name</item>
+        <item>Year</item>
+        <item>Type</item>
+    </array>
+</resources>
