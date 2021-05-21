@@ -2,19 +2,19 @@ package com.mnpm.multiproductmgr
 
 enum class ProductTypes {
     WAGON {
-        override fun getIcon(): Int = R.drawable.ic_menu_camera
+        override fun getIcon(): Int = R.mipmap.ic_wagon
         override fun getString(): String = "Station Wagon"
     },
     HATCHBACK {
-        override fun getIcon(): Int = R.drawable.ic_menu_camera
+        override fun getIcon(): Int = R.mipmap.ic_hatchback
         override fun getString(): String = "Hatchback"
     },
     COUPE {
-        override fun getIcon(): Int = R.drawable.ic_menu_camera
+        override fun getIcon(): Int = R.mipmap.ic_coupe
         override fun getString(): String = "Coupe"
     },
     CONVERTIBLE {
-        override fun getIcon(): Int = R.drawable.ic_menu_camera
+        override fun getIcon(): Int = R.mipmap.ic_convertible
         override fun getString(): String = "Convertible"
     };
 
