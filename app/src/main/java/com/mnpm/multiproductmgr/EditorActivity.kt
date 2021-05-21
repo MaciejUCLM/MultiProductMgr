@@ -68,13 +68,14 @@ class EditorActivity : AppCompatActivity() {
 
         //Recoger los datos enviados por la primera actividad y mostrarlos en la GUI
         val bundle = intent.extras
-        print(bundle)
-        nameField.setText(bundle!!.getString(carFieldName[0]))
-        powerField.setText(bundle.getString(carFieldName[1]))
-        maxVelocityField.setText(bundle.getString(carFieldName[2]))
-        typeField.setSelection(bundle.getInt(carFieldName[3]))
-        productionYearField.setText(bundle.getString(carFieldName[4]))
-        massField.setText(bundle.getString(carFieldName[5]))
+        if(bundle != null) {
+            nameField.setText(bundle.getString(carFieldName[0]))
+            powerField.setText(bundle.getString(carFieldName[1]))
+            maxVelocityField.setText(bundle.getString(carFieldName[2]))
+            typeField.setSelection(bundle.getInt(carFieldName[3]))
+            productionYearField.setText(bundle.getString(carFieldName[4]))
+            massField.setText(bundle.getString(carFieldName[5]))
+        }
 
 
         btnGuardarC = findViewById<Button>(R.id.btnGuardarC)
