@@ -77,4 +77,9 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.ViewHolder> {
         }
         notifyDataSetChanged()
     }
+
+    fun filterList(text: String?) {
+        // TODO search filter
+        notifyDataSetChanged()
+    }
 }
