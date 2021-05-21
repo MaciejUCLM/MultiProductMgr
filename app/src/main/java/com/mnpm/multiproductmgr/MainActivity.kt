@@ -42,8 +42,8 @@ class MainActivity : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
         lsAdapter!!.setListener(object : OnItemSelectedListenerI {
             override fun onItemSelected(view: View, position: Int) {
                 ProductManager.setProductSelected(position)
-                val intent = Intent(this@MainActivity, DetailsActivity::class.java)
-                ProductManager.putProductToIntent(intent)
+                val intent = ProductManager.productToIntent(Intent(this@MainActivity, DetailsActivity::class.java))
+                startActivity(intent)
                 // TODO open details
             }
         })
