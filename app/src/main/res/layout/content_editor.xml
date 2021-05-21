@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainEditorLayout"
@@ -12,212 +12,195 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:orientation="vertical">
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/fab_margin"
-            android:text="@string/edit_name" />
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/carNameField"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/fab_margin"
+                android:labelFor="@id/carNameField"
+                android:text="@string/edit_name" />
+
+            <EditText
+                android:id="@+id/carNameField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/fab_margin"
+                android:layout_marginTop="@dimen/small_margin"
+                android:layout_marginRight="@dimen/fab_margin"
+                android:background="@drawable/custom_item"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:importantForAutofill="no" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/fab_margin"
+                android:text="" />
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/fab_margin"
-            android:layout_marginTop="@dimen/small_margin"
-            android:layout_marginRight="@dimen/fab_margin"
-            android:background="@drawable/custom_item"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:importantForAutofill="no" />
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/fab_margin"
-            android:text="" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/fab_margin"
+                android:labelFor="@id/carPowerField"
+                android:text="@string/edit_power" />
 
-        <TextView
+            <EditText
+                android:id="@+id/carPowerField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/fab_margin"
+                android:layout_marginTop="@dimen/small_margin"
+                android:layout_marginRight="@dimen/fab_margin"
+                android:background="@color/design_default_color_on_primary"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/fab_margin"
+                android:text="" />
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/fab_margin"
-            android:text="@string/edit_power" />
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/carPowerField"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/fab_margin"
+                android:labelFor="@id/carMaxVelocityField"
+                android:text="@string/edit_max_speed" />
+
+            <EditText
+                android:id="@+id/carMaxVelocityField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/fab_margin"
+                android:layout_marginTop="@dimen/small_margin"
+                android:layout_marginRight="@dimen/fab_margin"
+                android:background="@color/design_default_color_on_primary"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/fab_margin"
+                android:text="" />
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/fab_margin"
-            android:layout_marginTop="@dimen/small_margin"
-            android:layout_marginRight="@dimen/fab_margin"
-            android:background="@color/design_default_color_on_primary"
-            android:ems="10"
-            android:inputType="textPersonName" />
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/fab_margin"
-            android:text="" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/fab_margin"
+                android:labelFor="@id/carCombustible"
+                android:text="@string/edit_combustible" />
 
-        <TextView
+            <EditText
+                android:id="@+id/carCombustible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/fab_margin"
+                android:layout_marginTop="@dimen/small_margin"
+                android:layout_marginRight="@dimen/fab_margin"
+                android:background="@color/design_default_color_on_primary"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/fab_margin"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/fab_margin"
-            android:text="@string/edit_max_speed" />
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/carMaxVelocityField"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/fab_margin"
+                android:text="@string/edit_year" />
+
+            <EditText
+                android:id="@+id/carProductionYearField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/fab_margin"
+                android:layout_marginTop="@dimen/small_margin"
+                android:layout_marginRight="@dimen/fab_margin"
+                android:background="@color/design_default_color_on_primary"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/fab_margin"
+                android:text="" />
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/fab_margin"
-            android:layout_marginTop="@dimen/small_margin"
-            android:layout_marginRight="@dimen/fab_margin"
-            android:background="@color/design_default_color_on_primary"
-            android:ems="10"
-            android:inputType="textPersonName" />
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/fab_margin"
-            android:text="" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/fab_margin"
+                android:text="@string/edit_mass" />
 
-        <TextView
+            <EditText
+                android:id="@+id/carMassField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/fab_margin"
+                android:layout_marginTop="@dimen/small_margin"
+                android:layout_marginRight="@dimen/fab_margin"
+                android:background="@color/design_default_color_on_primary"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/fab_margin"
+                android:text="" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btnGuardarC"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/fab_margin"
-            android:text="@string/edit_combustible" />
+            android:text="@string/edit_save" />
 
-        <EditText
-            android:id="@+id/car"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/fab_margin"
-            android:layout_marginTop="@dimen/small_margin"
-            android:layout_marginRight="@dimen/fab_margin"
-            android:background="@color/design_default_color_on_primary"
-            android:ems="10"
-            android:inputType="textPersonName" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/fab_margin"
-            android:text="" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/fab_margin"
-            android:text="@string/edit_emission" />
-
-        <EditText
-            android:id="@+id/carCarbonDioxideEmisionField"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/fab_margin"
-            android:layout_marginTop="@dimen/small_margin"
-            android:layout_marginRight="@dimen/fab_margin"
-            android:background="@color/design_default_color_on_primary"
-            android:ems="10"
-            android:inputType="textPersonName" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/fab_margin"
-            android:text="" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/fab_margin"
-            android:text="@string/edit_year" />
-
-        <EditText
-            android:id="@+id/carProductionYearField"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/fab_margin"
-            android:layout_marginTop="@dimen/small_margin"
-            android:layout_marginRight="@dimen/fab_margin"
-            android:background="@color/design_default_color_on_primary"
-            android:ems="10"
-            android:inputType="textPersonName" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/fab_margin"
-            android:text="" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/fab_margin"
-            android:text="@string/edit_mass" />
-
-        <EditText
-            android:id="@+id/carMassField"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/fab_margin"
-            android:layout_marginTop="@dimen/small_margin"
-            android:layout_marginRight="@dimen/fab_margin"
-            android:background="@color/design_default_color_on_primary"
-            android:ems="10"
-            android:inputType="textPersonName" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/fab_margin"
-            android:text="" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnGuardarC"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/edit_save" />
-
-</LinearLayout>
+</ScrollView>
