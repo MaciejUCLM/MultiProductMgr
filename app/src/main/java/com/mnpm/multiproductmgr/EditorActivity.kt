@@ -16,7 +16,7 @@ class EditorActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editor)
 
-        val layout = findViewById<LinearLayout>(R.id.mainEditorLayout)
+        val layout = findViewById<ScrollView>(R.id.mainEditorLayout)
         val unwrappedDrawable = resources.getDrawable(R.drawable.custom_item)
         val wrappedDrawable: Drawable = DrawableCompat.wrap(unwrappedDrawable)
 
@@ -45,7 +45,6 @@ class EditorActivity : AppCompatActivity() {
                 "carNameField",
                 "carPowerField",
                 "carMaxVelocityField",
-                "carCarbonDioxideEmisionField",
                 "carMassField",
                 "carProductionYearField"
         )
@@ -53,7 +52,6 @@ class EditorActivity : AppCompatActivity() {
                 findViewById<EditText>(R.id.carNameField),
                 findViewById<EditText>(R.id.carPowerField),
                 findViewById<EditText>(R.id.carMaxVelocityField),
-                findViewById<EditText>(R.id.carCarbonDioxideEmisionField),
                 findViewById<EditText>(R.id.carMassField),
                 findViewById<EditText>(R.id.carProductionYearField)
         )

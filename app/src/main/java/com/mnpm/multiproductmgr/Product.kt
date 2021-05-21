@@ -1,19 +1,41 @@
 package com.mnpm.multiproductmgr
 
+enum class ProductTypes {
+    WAGON {
+        override fun getIcon(): Int = R.drawable.ic_menu_camera
+        override fun getString(): String = "Station Wagon"
+    },
+    HATCHBACK {
+        override fun getIcon(): Int = R.drawable.ic_menu_camera
+        override fun getString(): String = "Hatchback"
+    },
+    COUPE {
+        override fun getIcon(): Int = R.drawable.ic_menu_camera
+        override fun getString(): String = "Coupe"
+    },
+    CONVERTIBLE {
+        override fun getIcon(): Int = R.drawable.ic_menu_camera
+        override fun getString(): String = "Convertible"
+    };
+
+    abstract fun getIcon(): Int
+    abstract fun getString(): String
+}
+
 class Product {
 
     private var name: String? = null
-    private var power: String? = null
-    private var maxVelocity: String?
-    private var carbonDioxideEmision: String? = null
-    private var mass: String? = null
-    private var productionYear: String? = null
+    private var type: ProductTypes? = null
+    private var power: Int? = null
+    private var maxVelocity: Int? = null
+    private var mass: Int? = null
+    private var productionYear: Int? = null
 
-    constructor(name: String?, power: String?, maxVelocity: String?, carbonDioxideEmision: String?, mass: String?, productionYear: String?) {
+    constructor(name: String, type: ProductTypes, power: Int, maxVelocity: Int, mass: Int, productionYear: Int) {
         this.name = name
+        this.type = type
         this.power = power
         this.maxVelocity = maxVelocity
-        this.carbonDioxideEmision = carbonDioxideEmision
         this.mass = mass
         this.productionYear = productionYear
     }
